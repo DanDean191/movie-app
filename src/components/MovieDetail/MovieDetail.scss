@@ -1,0 +1,23 @@
+@import "../../common/styles.scss";
+
+.movie-details-container {
+    color: $secondary-color
+}
+
+.meter-outer {
+    position: relative;
+    padding:2px;
+    background:#CCC;
+    height: 2rem;
+    border-radius: 5rem;
+}
+
+.meter-inner {
+    position: absolute;
+    background: #F00;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+}

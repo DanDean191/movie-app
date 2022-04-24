@@ -1,0 +1,24 @@
+@import "../src/common/styles.scss";
+
+html {
+    font-size: 16px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Creepster', cursive;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    background: $primary-background;
+}
+
+.container {
+    margin: 0 40px;
+}

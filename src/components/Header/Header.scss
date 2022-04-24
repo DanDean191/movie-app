@@ -1,0 +1,19 @@
+@import "../../common/styles.scss";
+
+.header {
+    background-color: $secondary-background;
+    min-height: 3rem;
+    padding: 0 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    font-size: 4rem;
+}
+
+.logo {
+    color: $primary-color;
+    font-size: 20px;
+    font-weight: 600;
+}
