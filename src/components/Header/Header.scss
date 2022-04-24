@@ -1,19 +1,51 @@
 @import "../../common/styles.scss";
 
 .header {
-    background-color: $secondary-background;
-    min-height: 3rem;
-    padding: 0 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    background-color: $primary-background;
+    // min-height: 3rem;
+    // padding: 0 3rem;
+    // display: flex;
+    // align-items: center;
+    // justify-content: space-between;
+    // flex-wrap: wrap;
 
-    font-size: 4rem;
+    // font-size: 4rem;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    padding: 1rem;
+
 }
 
 .logo {
     color: $primary-color;
-    font-size: 20px;
+    font-size: 3rem;
     font-weight: 600;
+}
+
+.searchbar {
+    display: flex;
+    width: 80%;
+    
+    * {
+        font-size: 1.25rem;
+        border: none;
+    }
+
+    input {
+        width: 100%;
+        text-align: center;
+    }
+
+    button {
+        padding: 1rem;
+        background-color: $primary-color;
+    }
+}
+
+@media (min-width: 768px) {
+    .header {
+        grid-template-columns: 1fr 3fr 1fr;
+    }
 }

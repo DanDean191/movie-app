@@ -9,6 +9,7 @@ html {
     padding: 0;
     box-sizing: border-box;
     font-family: 'Creepster', cursive;
+    font-weight: 100;
 }
 
 a {
@@ -16,9 +17,16 @@ a {
 }
 
 body {
-    background: $primary-background;
+    background: $secondary-background;
+}
+
+.app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .container {
-    margin: 0 40px;
+    margin: 0 10vw;
 }

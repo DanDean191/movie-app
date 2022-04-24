@@ -22,23 +22,25 @@ const MovieDetail = () => {
 
   return (
     <div className="movie-details-container">
-      <h1>{title} - {release_date}</h1>
+      <div className="movie-details">
+      <h1>{title} - {release_date && release_date.slice(0,4)}</h1>
       <h3>{tagline}</h3>
-      <p>{runtime} mins</p>
-      <p>Budget ${budget}</p>
-      <p>Revenue ${revenue}</p>
-      <p>{overview}</p>
-      <label htmlFor="rating">User rating</label>
-      <meter id="rating" className="meter" value={vote_average*10} min="1" max="100">{vote_average*10}%</meter>
       
-
-      <div className="meter-outer">
-        <div className="meter-inner" style={{width: `${vote_average*10}%`}}>
+        <p>Runtime: {runtime} mins</p>
+        <p>Budget: ${budget}</p>
+        <p>Revenue: ${revenue}</p>
+        <p>{overview}</p>
+        <p>User rating: <span>{vote_average*10}%</span></p>
+        <div className="meter-outer">
+          <div className="meter-inner" style={{width: `${vote_average*10}%`}}>
+          </div>
         </div>
+
       </div>
-      <span>{vote_average*10}%</span>
-      
-      <img src={`https://image.tmdb.org/t/p/original${poster_path}`}></img>
+          
+      <div className="movie-poster">
+        <img src={`https://image.tmdb.org/t/p/original${poster_path}`}></img>
+      </div>
     </div>
 
   )

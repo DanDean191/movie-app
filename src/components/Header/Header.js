@@ -20,8 +20,8 @@ const Header = () => {
         <div className="logo">Sp00kyFlix</div>
       </Link>
 
-      <div>
-        <input type="text" className="" onChange={(e)=>setSearchTerm(e.target.value)} onKeyUp={(e)=> enterCheck(e)}></input>
+      <div className="searchbar">
+        <input type="text" className="" onChange={(e)=>setSearchTerm(e.target.value)} onKeyUp={(e)=> enterCheck(e)} />
         <button onClick={saveSearchTerm} >Search</button>
       </div>
     </div>

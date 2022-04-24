@@ -1,8 +1,9 @@
 @import "../../common/styles.scss";
 
 .footer {
-    background: $secondary-background;
+    background: $primary-background;
     color: $primary-color;
+    width: 100%;
     height: 72px;
     display: flex;
     flex-direction: column;
