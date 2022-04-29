@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react'
 import MovieListing from '../MovieListing/MovieListing'
 import { useDispatch, useSelector } from 'react-redux'
-import { getPopularMovies, getSearchTerm, searchAsyncMovies } from '../../features/movies/moviesSlice'
+import { getPopularMovies, selectSearchTerm, searchAsyncMovies, clearMovie } from '../../features/movies/moviesSlice'
 
 const Home = () => {
   const dispatch = useDispatch()  
-  const searchTerm = useSelector(getSearchTerm)
+  const searchTerm = useSelector(selectSearchTerm)
 
   useEffect(() => {
     dispatch(getPopularMovies())
+    dispatch(clearMovie())
   }, [dispatch])
 
   useEffect(() => {

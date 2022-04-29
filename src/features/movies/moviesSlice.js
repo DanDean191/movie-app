@@ -3,10 +3,10 @@ import movieAPI, { filterHorrorMovies } from '../../common/apis/movieAPI'
 import APIKey from '../../common/apis/movieAPIKey'
 
 const initialState = {
-    movieData: [],
+    movieData: {},
     searchTerm: '', //'a nightmare on elm street',
     currentMovie: [],
-    status: 'idle',
+    loading: true,
 };
 
 export const getPopularMovies = createAsyncThunk(
@@ -56,49 +56,53 @@ export const moviesSlice = createSlice({
         },
         setCurrentMovie(state, { payload }) {
             state.currentMovie = payload
-        }
+        },
+        clearMovie(state) {
+            state.currentMovie = []
+        } 
     },
     extraReducers: (builder) => {
         builder       
         .addCase(searchAsyncMovies.pending, (state) => {
-            state.status = 'loading';
+            state.loading = true;
         })
         .addCase(searchAsyncMovies.fulfilled, (state, { payload }) => {
-            state.status = 'idle';    
+            state.loading = false;
             state.movieData = payload;
         })
         .addCase(searchAsyncMovies.rejected, (state) => {
-            state.status = 'rejected';
+            state.loading = false;
         })    
 
         .addCase(getPopularMovies.pending, (state) => {
-            state.status = 'loading';
+            state.loading = true;
         })
         .addCase(getPopularMovies.fulfilled, (state, { payload }) => {
-            state.status = 'idle';    
+            state.loading = false;  
             state.movieData = payload;
         })
         .addCase(getPopularMovies.rejected, (state) => {
-            state.status = 'rejected';
+            state.loading = false;
         })    
 
         .addCase(getMovie.pending, (state) => {
-            state.status = 'loading';
+            state.loading = true;
         })
         .addCase(getMovie.fulfilled, (state, { payload }) => {
-            state.status = 'idle';    
+            state.loading = false;
             state.currentMovie = payload;
         })
         .addCase(getMovie.rejected, (state) => {
-            state.status = 'rejected';
+            state.loading = false;
         })  
     }
 })
 
-export const { updateSearchTerm } = moviesSlice.actions
+export const { updateSearchTerm, clearMovie } = moviesSlice.actions
 
-export const getAllMovies = (state) => state.movies.movieData
-export const getSearchTerm  = (state) => state.movies.searchTerm
-export const getCurrentMovie = (state) => state.movies.currentMovie
+export const selectAllMovies = (state) => state.movies.movieData
+export const selectSearchTerm  = (state) => state.movies.searchTerm
+export const selectCurrentMovie = (state) => state.movies.currentMovie
+export const selectLoadingState = (state) => state.movies.loading
 
 export default moviesSlice.reducer;

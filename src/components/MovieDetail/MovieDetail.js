@@ -1,26 +1,26 @@
 import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { getCurrentMovie, getMovie } from '../../features/movies/moviesSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectCurrentMovie, selectLoadingState, getMovie, clearMovie } from '../../features/movies/moviesSlice'
 import './MovieDetail.scss'
 
 const MovieDetail = () => {
   const dispatch = useDispatch()
+  const loading = useSelector(selectLoadingState)
+  const data = useSelector(selectCurrentMovie)
   const { id } = useParams();
+  const {title, budget, overview, release_date, revenue, runtime, tagline, poster_path, vote_average} = data
 
   useEffect(() => {
     dispatch(getMovie(id))
-  },[])
+  },[id, dispatch])
     
-  const data = useSelector(getCurrentMovie)
-
-  //console.log(data)
-
-  const {title, budget, overview, release_date, revenue, runtime, tagline, poster_path, vote_average} = data
-  
-
-
   return (
+    <>
+    { 
+    loading ? <div>loading</div> :
+    
+    
     <div className="movie-details-container">
       <div className="movie-details">
       <h1>{title} - {release_date && release_date.slice(0,4)}</h1>
@@ -39,10 +39,12 @@ const MovieDetail = () => {
       </div>
           
       <div className="movie-poster">
-        <img src={`https://image.tmdb.org/t/p/original${poster_path}`}></img>
+        <img src={`https://image.tmdb.org/t/p/original${poster_path}`} alt={title + 'Poster'}></img>
       </div>
     </div>
-
+    
+    }
+    </>
   )
 }
 

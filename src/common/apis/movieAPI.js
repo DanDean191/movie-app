@@ -1,16 +1,16 @@
 import axios from "axios";
 
 export const filterHorrorMovies = (movies) => {
-    const filteredMovies = []
+    const filteredMovies = {}
         
     for (const movie of movies) {
         const genreList = movie.genre_ids;
         
         if (genreList.includes(27) && movie.poster_path !== null) { 
-            filteredMovies.push(movie)
+           filteredMovies[movie.id] = movie
         }
     }
-
+    
     return filteredMovies
 }
 

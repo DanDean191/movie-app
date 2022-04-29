@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import './Header.scss'
 
 import { useDispatch } from 'react-redux'
@@ -8,7 +8,12 @@ import { updateSearchTerm } from '../../features/movies/moviesSlice'
 const Header = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const dispatch = useDispatch()
-  const saveSearchTerm = () => dispatch(updateSearchTerm(searchTerm))
+  const navigate = useNavigate()
+
+  const saveSearchTerm = () => { 
+    dispatch(updateSearchTerm(searchTerm)) 
+    navigate('/')
+  }
 
   const enterCheck = (e) => {
     if (e.key === 'Enter') saveSearchTerm()
