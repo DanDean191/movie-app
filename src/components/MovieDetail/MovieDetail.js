@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectCurrentMovie, selectLoadingState, getMovie, clearMovie } from '../../features/movies/moviesSlice'
 import './MovieDetail.scss'
+import Loading  from '../Loading/Loading'
 
 const MovieDetail = () => {
   const dispatch = useDispatch()
@@ -12,13 +13,17 @@ const MovieDetail = () => {
   const {title, budget, overview, release_date, revenue, runtime, tagline, poster_path, vote_average} = data
 
   useEffect(() => {
+    console.log(loading)
     dispatch(getMovie(id))
+
   },[id, dispatch])
     
   return (
     <>
     { 
-    loading ? <div>loading</div> :
+    loading ? 
+        <Loading />
+    :
     
     
     <div className="movie-details-container">

@@ -1,7 +1,7 @@
 @import "../../common/styles.scss";
 
 .card-item {
-    background: $secondary-background;
+    background: $primary-background;
     cursor: pointer;
 }
 
@@ -25,4 +25,20 @@
         font-weight: 400;
         margin-bottom: 10px; 
     }
+}
+
+.loading {
+    display: none;
+    visibility: hidden;
+}
+
+.card-loading {
+    height: 100%;
+    width: 100%;
+    background: $primary-background;
+    background-image: url(../../images/bat.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-blend-mode: color-burn;    
 }

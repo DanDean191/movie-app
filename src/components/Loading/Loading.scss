@@ -1,0 +1,15 @@
+@import "../../common/styles.scss";
+// $secondary-color
+
+.loading-container {
+    color: $secondary-color;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1em;
+    justify-items: center;
+}
+
+.loading-img {
+    filter: hue-rotate(90deg) brightness(0%);
+    max-width:100%;
+}

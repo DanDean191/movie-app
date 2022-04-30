@@ -9,6 +9,13 @@ const initialState = {
     loading: true,
 };
 
+export const resetMovies = () => {
+    return (dispatch) => {
+        dispatch(resetMovies())
+        dispatch(getPopularMovies())
+    }
+}
+
 export const getPopularMovies = createAsyncThunk(
     'movies/mostPopular',
     async() => {
@@ -43,7 +50,9 @@ export const getMovie = createAsyncThunk(
             .catch((error) => {
               console.error(error)
             })
-        return response.data
+
+            setTimeout(() => {} ,30000)
+            return response.data
     }
 )
 
@@ -52,6 +61,7 @@ export const moviesSlice = createSlice({
     initialState,
     reducers: {
         updateSearchTerm(state, { payload }) {
+            state.movieData = {}
             state.searchTerm = payload
         },
         setCurrentMovie(state, { payload }) {
@@ -59,10 +69,14 @@ export const moviesSlice = createSlice({
         },
         clearMovie(state) {
             state.currentMovie = []
+        },
+        resetMovies(state) {
+            state.movieData = {}
         } 
     },
     extraReducers: (builder) => {
-        builder       
+        builder
+        // search      
         .addCase(searchAsyncMovies.pending, (state) => {
             state.loading = true;
         })
@@ -74,6 +88,7 @@ export const moviesSlice = createSlice({
             state.loading = false;
         })    
 
+        //popular
         .addCase(getPopularMovies.pending, (state) => {
             state.loading = true;
         })
@@ -85,6 +100,7 @@ export const moviesSlice = createSlice({
             state.loading = false;
         })    
 
+        //single
         .addCase(getMovie.pending, (state) => {
             state.loading = true;
         })

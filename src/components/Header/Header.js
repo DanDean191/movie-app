@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom"
 import './Header.scss'
 
 import { useDispatch } from 'react-redux'
-import { updateSearchTerm } from '../../features/movies/moviesSlice'
+import { updateSearchTerm, resetMovies } from '../../features/movies/moviesSlice'
 
 const Header = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -21,7 +21,7 @@ const Header = () => {
 
   return (
     <div className="header">
-      <Link to={'/'} >
+      <Link to={'/'} onClick={() => dispatch(resetMovies())}>
         <div className="logo">Sp00kyFlix</div>
       </Link>
 
